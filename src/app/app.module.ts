@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { WebCamComponent } from './components/web-cam/web-cam.component';
-import { UppyAngularDashboardModule } from '@uppy/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenubarModule } from 'primeng/menubar';
 
@@ -20,7 +19,6 @@ import { MenubarModule } from 'primeng/menubar';
   imports: [
     BrowserModule,
     HttpClientModule,
-    UppyAngularDashboardModule,
     WebcamModule,
     MenubarModule,
     BrowserAnimationsModule,
