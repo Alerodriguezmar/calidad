@@ -9,6 +9,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { WebCamComponent } from './components/web-cam/web-cam.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenubarModule } from 'primeng/menubar';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { GalleriaModule } from 'primeng/galleria';
 
 @NgModule({
   declarations: [
@@ -20,9 +23,12 @@ import { MenubarModule } from 'primeng/menubar';
     BrowserModule,
     HttpClientModule,
     WebcamModule,
+    ButtonModule,
     MenubarModule,
     BrowserAnimationsModule,
     SlideMenuModule,
+    GalleriaModule,
+    DialogModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
