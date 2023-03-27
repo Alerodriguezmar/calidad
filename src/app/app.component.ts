@@ -23,19 +23,20 @@ export class AppComponent {
                               {
                                   label: 'Nuevo Reporte',
                                   icon: 'pi pi-camera',
-                                routerLink:"/webcam"
+                                   routerLink:"/webcam"
                               }
                           ]
                       }
                   ]
-              },
-              {
-                  separator: true
-              },
-              {
-                  label: 'Quit',
-                  icon: 'pi pi-fw pi-power-off'
               }
+            //   ,
+            //   {
+            //       separator: true
+            //   },
+            //   {
+            //       label: 'Quit',
+            //       icon: 'pi pi-fw pi-power-off'
+            //   }
           ];
       }
   

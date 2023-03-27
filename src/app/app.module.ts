@@ -12,6 +12,11 @@ import { MenubarModule } from 'primeng/menubar';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { GalleriaModule } from 'primeng/galleria';
+import { ContextMenuModule } from 'primeng/contextmenu';
+import { CarouselModule } from 'primeng/carousel';
+import { ImageModule } from 'primeng/image';
+import { CardModule } from 'primeng/card';
+import { SpeedDialModule } from 'primeng/speeddial';
 
 @NgModule({
   declarations: [
@@ -21,14 +26,19 @@ import { GalleriaModule } from 'primeng/galleria';
   ],
   imports: [
     BrowserModule,
+    CardModule,
+    SpeedDialModule,
     HttpClientModule,
     WebcamModule,
     ButtonModule,
     MenubarModule,
+    ImageModule,
     BrowserAnimationsModule,
     SlideMenuModule,
     GalleriaModule,
     DialogModule,
+    CarouselModule,
+    ContextMenuModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),

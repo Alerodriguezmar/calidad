@@ -1,11 +1,10 @@
-<div style="text-align:center">
+<div  style="text-align:center" >
   <h1>
-      Tomar Foto de
+     Generar reporte de defecto
   </h1>
 
-
   <div class="card flex justify-content-center">
-    <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button>
+    <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
     <p-dialog header="Header" [(visible)]="visible" [modal]="true" [style]="{ width: '400' , height: 400 }" [draggable]="false" [resizable]="false">
       <webcam [height]="340" [width]="340" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
       [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
@@ -17,69 +16,40 @@
 ></webcam>
 <br>
     <button class="actionBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
-    <button class="actionBtn" (click)="toggleWebcam();">Toggle Webcam</button>
+    <!-- <button class="actionBtn" (click)="toggleWebcam();">Toggle Webcam</button> -->
     <br>
-    <button class="actionBtn" (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable">Next Webcam</button>
+    <!-- <button class="actionBtn" (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable">Next Webcam</button> -->
     </p-dialog>
 </div>
-
-  <div style="align-items: center; position: absolute;">
-  
-    
-    <!-- <input id="cameraSwitchCheckbox" type="checkbox" [(ngModel)]="allowCameraSwitch"><label for="cameraSwitchCheckbox">Allow Camera Switch</label> -->
-    <!-- <br> -->
-    <!-- DeviceId: <input id="deviceId" type="text" [(ngModel)]="deviceId" style="width: 500px"> -->
-    <!-- <button (click)="showNextWebcam(deviceId);">Activate</button> -->
-    <!-- <br> -->
-    <!-- Preferred facing mode: -->
-    <!-- <input type="radio" value="user" name="facingMode" [(ngModel)]="facingMode"> User
-    <input type="radio" value="environment" name="facingMode" [(ngModel)]="facingMode"> Environment
-    <input type="radio" value="" name="facingMode" [(ngModel)]="facingMode"> No preference -->
-  </div>
 </div>
 
-<div class="snapshot" *ngIf="webcamImage">
-  <h2>Nice one!</h2>
-  <img [src]="webcamImage.imageAsDataUrl" alt="webcam image">
+
+<div style="height: 350px; position: relative;" class="speeddial-mask-demo"  >
+  <p-speedDial [model]="items" direction="up" ></p-speedDial>
 </div>
 
 <div>
 <h2>
   Imagenes array
 </h2>
-
-<!-- <div *ngFor="let student of imagenesUr">
-   <img src={{student}} />
-</div> -->
-
+ <div *ngFor="let student of imagenesUr" style="  display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;">
+<p-image src={{student}} [preview]="true" alt="Image" width="250">
+  <ng-template pTemplate="indicator">
+      <i class="pi pi-check"></i>
+  </ng-template>
+</p-image>
+<div style=" margin-top: 10px;">
+  <p-button  (click)="deleteImg(student)" icon="pi pi-times" styleClass="p-button-rounded p-button-danger"  ></p-button>
 </div>
+</div> 
 
-<!-- <h4 *ngIf="messages.length > 0">Messages:</h4>
-<ul *ngFor="let msg of messages">
-  <li>{{msg | json}}</li>
-</ul>
- -->
 
- 
-<!-- <div class="card">
-  <div *ngIf="imagenesUr" class="grid" style="max-width: 800px;">
-      <div *ngFor="let image of imagenesUr; let index = index" class="col-3" key="index">
-          <img [src]="image" [alt]="image.alt" style="cursor: pointer" (click)="imageClick(index)" />
-      </div>
-  </div> -->
-  <p-galleria
-      [value]="imagenesUr"
-      [(visible)]="displayCustom"
-      [(activeIndex)]="activeIndex"
-      [responsiveOptions]="responsiveOptions"
-      [containerStyle]="{ 'max-width': '850px' }"
-      [numVisible]="7"
-      [circular]="true"
-      [fullScreen]="true"
-      [showItemNavigators]="true"
-      [showThumbnails]="false"
-  >
-      <ng-template pTemplate="item" let-item>
-          <img [src]="item" style="width: 100%; display: block;" />
-      </ng-template>
-  </p-galleria>
+
+
+
+
+
+

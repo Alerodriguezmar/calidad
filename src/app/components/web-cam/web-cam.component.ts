@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { WebcamImage, WebcamInitError } from 'ngx-webcam';
+import { MenuItem } from 'primeng/api';
 import { Observable, Subject } from 'rxjs';
 import { WebCamService } from 'src/app/services/web-cam.service';
 
@@ -9,7 +10,7 @@ import { WebCamService } from 'src/app/services/web-cam.service';
   styleUrls: ['./web-cam.component.scss']
 })
 export class WebCamComponent {
-  public showWebcam = false;
+  public showWebcam = true;
   public allowCameraSwitch = true;
   public multipleWebcamsAvailable = false;
   public deviceId!: string;
@@ -17,46 +18,47 @@ export class WebCamComponent {
   public messages: any[] = [];
   public getScreenWidth: any;
   visible: boolean = false;
-  public imagenesUr: any[] = []; 
-  displayCustom!: boolean;
-  activeIndex: number = 0;
+  public imagenesUr: any[] = [];
+  responsiveOptions!: any[];
+  items!: MenuItem[];
 
-  
-    responsiveOptions: any[] = [
-        {
-            breakpoint: '1500px',
-            numVisible: 5
-        },
-        {
-            breakpoint: '1024px',
-            numVisible: 3
-        },
-        {
-            breakpoint: '768px',
-            numVisible: 2
-        },
-        {
-            breakpoint: '560px',
-            numVisible: 1
-        }
-    ];
 
-  constructor(private webCamService:WebCamService ) {}
-  
+  constructor(private webCamService: WebCamService) { }
 
-  // latest snapshot
+
+
   public webcamImage: WebcamImage | undefined;
 
-  // webcam snapshot trigger
+
   private trigger: Subject<void> = new Subject<void>();
-  // switch to next / previous / specific webcam; true/false: forward/backwards, string: deviceId
-  private nextWebcam: Subject<boolean|string> = new Subject<boolean|string>();
+
+  private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
 
   public ngOnInit(): void {
-   
+
+    this.items = [
+      
+      {
+          icon: 'pi pi-camera',
+          command: () => {
+            this.showDialog()
+             // this.messageService.add({ severity: 'error', summary: 'Delete', detail: 'Data Deleted' });
+          }
+      },
+      // {
+      //     icon: 'pi pi-upload',
+      //     routerLink: ['/fileupload']
+      // },
+      // {
+      //     icon: 'pi pi-external-link',
+      //     url: 'http://angular.io'
+      // }
+  ];
+
+
     this.getScreenWidth = window.innerWidth;
     console.log(this.getScreenWidth)
-   // this.readAvailableVideoInputs();
+
   }
 
   public triggerSnapshot(): void {
@@ -74,10 +76,7 @@ export class WebCamComponent {
     }
   }
 
-  public showNextWebcam(directionOrDeviceId: boolean|string): void {
-    // true => move forward through devices
-    // false => move backwards through devices
-    // string => move to device with given deviceId
+  public showNextWebcam(directionOrDeviceId: boolean | string): void {
     this.nextWebcam.next(directionOrDeviceId);
   }
 
@@ -85,17 +84,16 @@ export class WebCamComponent {
     this.addMessage('Received webcam image');
     console.log(webcamImage);
     this.webcamImage = webcamImage;
-    this.webcamImage.imageData
+
     this.imagenesUr.push(this.webcamImage.imageAsDataUrl)
     this.webCamService.sendPicture(this.webcamImage.imageAsDataUrl).subscribe(response => console.log(response),
-    error => console.log('oops', error))
-   // console.log('Img base 64:' + this.webcamImage.imageAsBase64)
+      error => console.log('oops', error))
   }
 
   public cameraWasSwitched(deviceId: string): void {
     this.addMessage('Active device: ' + deviceId);
     this.deviceId = deviceId;
-    //this.readAvailableVideoInputs();
+
   }
 
   addMessage(message: any): void {
@@ -107,7 +105,7 @@ export class WebCamComponent {
     return this.trigger.asObservable();
   }
 
-  public get nextWebcamObservable(): Observable<boolean|string> {
+  public get nextWebcamObservable(): Observable<boolean | string> {
     return this.nextWebcam.asObservable();
   }
 
@@ -123,16 +121,12 @@ export class WebCamComponent {
 
   showDialog() {
     this.visible = true;
-}
-  // private readAvailableVideoInputs() {
-  //   WebcamUtil.getAvailableVideoInputs()
-  //     .then((mediaDevices: MediaDeviceInfo[]) => {
-  //       this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
-  //     });
-  // }
+  }
 
-  imageClick(index: number) {
-    this.activeIndex = index;
-    this.displayCustom = true;
+  deleteImg(img: any): void {
+    this.imagenesUr.splice(this.imagenesUr.indexOf(img), 1);
+  }
 }
-}
+
+
+
