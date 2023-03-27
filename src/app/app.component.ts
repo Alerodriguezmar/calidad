@@ -12,6 +12,14 @@ export class AppComponent {
   
       ngOnInit() {
           this.items = [
+            {
+                label: 'Inicio',
+                icon: 'pi pi-fw pi-power-off',
+                routerLink: "/"
+            },
+            {
+                separator: true
+            },
               {
                   label: 'Reportes',
                   icon: 'pi pi-fw pi-file',
@@ -29,14 +37,8 @@ export class AppComponent {
                       }
                   ]
               }
-            //   ,
-            //   {
-            //       separator: true
-            //   },
-            //   {
-            //       label: 'Quit',
-            //       icon: 'pi pi-fw pi-power-off'
-            //   }
+             
+             
           ];
       }
   

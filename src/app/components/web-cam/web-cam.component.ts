@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WebcamImage, WebcamInitError } from 'ngx-webcam';
 import { MenuItem } from 'primeng/api';
 import { Observable, Subject } from 'rxjs';
@@ -21,9 +22,15 @@ export class WebCamComponent {
   public imagenesUr: any[] = [];
   responsiveOptions!: any[];
   items!: MenuItem[];
+  report!:FormGroup;
+  
+
+  //Inicializar data
+
+ 
 
 
-  constructor(private webCamService: WebCamService) { }
+  constructor(private webCamService: WebCamService, private fb: FormBuilder) { }
 
 
 
@@ -35,6 +42,8 @@ export class WebCamComponent {
   private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
 
   public ngOnInit(): void {
+
+    this.report = this.initForm();
 
     this.items = [
       
@@ -54,12 +63,25 @@ export class WebCamComponent {
       //     url: 'http://angular.io'
       // }
   ];
-
-
     this.getScreenWidth = window.innerWidth;
-    console.log(this.getScreenWidth)
-
   }
+
+  initForm():FormGroup{
+    return this.fb.group({
+      // username:['',[Validators.required,Validators.minLength(5)]],
+       //password:['',[Validators.required,Validators.minLength(5)]],
+       //names:['',[Validators.required,Validators.minLength(5)]],
+       //surnames:['',[Validators.required,Validators.minLength(5)]],
+       withoutgrouping:['',[]]
+     });
+   }
+
+   onSubmit():void{
+   console.log (this.report.value)
+    }
+
+
+
 
   public triggerSnapshot(): void {
     this.trigger.next();
@@ -82,12 +104,10 @@ export class WebCamComponent {
 
   public handleImage(webcamImage: WebcamImage): void {
     this.addMessage('Received webcam image');
-    console.log(webcamImage);
     this.webcamImage = webcamImage;
 
     this.imagenesUr.push(this.webcamImage.imageAsDataUrl)
-    this.webCamService.sendPicture(this.webcamImage.imageAsDataUrl).subscribe(response => console.log(response),
-      error => console.log('oops', error))
+    this.webCamService.sendPicture(this.webcamImage.imageAsDataUrl).subscribe()
   }
 
   public cameraWasSwitched(deviceId: string): void {
@@ -97,7 +117,6 @@ export class WebCamComponent {
   }
 
   addMessage(message: any): void {
-    console.log(message);
     this.messages.unshift(message);
   }
 

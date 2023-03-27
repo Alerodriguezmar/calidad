@@ -1,55 +1,94 @@
-<div  style="text-align:center" >
-  <h1>
-     Generar reporte de defecto
-  </h1>
+<div style="text-align:center">
+  <div class="form-header">
+    <h1>Generar Reporte</h1>
+  </div>
+
+  <div style="display: flex;
+  justify-content: center;
+  align-items: center;" >
+  <form (ngSubmit)="onSubmit()" [formGroup]="report">
+
+
+
+
+      <div style="padding-top: 15%; display: flex; align-items: center;">
+      <span class="p-float-label">
+        <input pInputText pKeyFilter="int" formControlName="withoutgrouping" />
+        <label htmlFor="username">Orden</label>
+      </span>
+    </div>
+    <div style="padding-top: 15%;"> 
+      <span class="p-float-label">
+        <input pInputText pKeyFilter="int" />
+        <label htmlFor="linea">Linea</label>
+      </span>
+    </div>
+    <div style="padding-top: 15%;"> 
+      <span class="p-float-label">
+        <input pInputText pKeyFilter="int" />
+        <label htmlFor="persiana">persiana</label>
+      </span>
+    </div>
+    <div style="padding-top: 15%;"> 
+      <span class="p-float-label">
+        <input pInputText pKeyFilter="int" />
+        <label htmlFor="Tela">Tela</label>
+      </span>
+    </div>
+
+<div style="padding-top: 15%;">
+  <p-button icon="pi pi-check" styleClass="p-button-rounded p-button-outlined" class="sumbit" type="submit"  [disabled]="report.invalid"></p-button>
+
+</div>
+  </form>
+</div>
+
+<h2>
+  Agregar Fotos
+</h2>
+
+<div style="display: flex;
+justify-content: center;
+align-items: center;">
+  <p-speedDial [model]="items" direction="up"></p-speedDial>
+</div>
+
+
+
+
 
   <div class="card flex justify-content-center">
     <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
-    <p-dialog header="Header" [(visible)]="visible" [modal]="true" [style]="{ width: '400' , height: 400 }" [draggable]="false" [resizable]="false">
-      <webcam [height]="340" [width]="340" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
-      [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
-      [videoOptions]="videoOptions"
-      [imageQuality]="1"
-      (cameraSwitched)="cameraWasSwitched($event)"
-      (initError)="handleInitError($event)"
-     
-></webcam>
-<br>
-    <button class="actionBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
-    <!-- <button class="actionBtn" (click)="toggleWebcam();">Toggle Webcam</button> -->
-    <br>
-    <!-- <button class="actionBtn" (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable">Next Webcam</button> -->
+    <p-dialog header="Tomar Foto" [(visible)]="visible" [modal]="true" [style]="{ width: '400' , height: 400 }"
+      [draggable]="false" [resizable]="false">
+      <webcam [height]="340" [width]="340" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+        *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+        [videoOptions]="videoOptions" [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)"
+        (initError)="handleInitError($event)"></webcam>
+      <br>
+      <button class="actionBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
+      <!-- <button class="actionBtn" (click)="toggleWebcam();">Toggle Webcam</button> -->
+      <br>
+      <!-- <button class="actionBtn" (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable">Next Webcam</button> -->
     </p-dialog>
-</div>
+  </div>
 </div>
 
 
-<div style="height: 350px; position: relative;" class="speeddial-mask-demo"  >
-  <p-speedDial [model]="items" direction="up" ></p-speedDial>
-</div>
+
 
 <div>
-<h2>
-  Imagenes array
-</h2>
- <div *ngFor="let student of imagenesUr" style="  display: flex;
+  <div *ngFor="let student of imagenesUr" style="  display: flex;
  flex-direction: column;
  justify-content: center;
  align-items: center;">
-<p-image src={{student}} [preview]="true" alt="Image" width="250">
-  <ng-template pTemplate="indicator">
-      <i class="pi pi-check"></i>
-  </ng-template>
-</p-image>
-<div style=" margin-top: 10px;">
-  <p-button  (click)="deleteImg(student)" icon="pi pi-times" styleClass="p-button-rounded p-button-danger"  ></p-button>
-</div>
-</div> 
-
-
-
-
-
-
-
-
+    <p-image src={{student}} [preview]="true" alt="Image" width="250">
+      <ng-template pTemplate="indicator">
+        <i class="pi pi-check"></i>
+      </ng-template>
+    </p-image>
+    <div style=" margin-top: 10px;">
+      <p-button (click)="deleteImg(student)" icon="pi pi-times"
+        styleClass="p-button-rounded p-button-danger"></p-button>
+    </div>
+  </div>

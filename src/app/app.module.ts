@@ -17,6 +17,9 @@ import { CarouselModule } from 'primeng/carousel';
 import { ImageModule } from 'primeng/image';
 import { CardModule } from 'primeng/card';
 import { SpeedDialModule } from 'primeng/speeddial';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,10 @@ import { SpeedDialModule } from 'primeng/speeddial';
   imports: [
     BrowserModule,
     CardModule,
+    InputTextModule,
+    InputNumberModule,
+    FormsModule,
+    ReactiveFormsModule,
     SpeedDialModule,
     HttpClientModule,
     WebcamModule,
