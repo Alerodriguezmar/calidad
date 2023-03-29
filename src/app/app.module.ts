@@ -20,16 +20,20 @@ import { SpeedDialModule } from 'primeng/speeddial';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
+import { ScanQrComponent } from './components/scan-qr/scan-qr/scan-qr.component';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WebCamComponent
+    WebCamComponent,
+    ScanQrComponent
     
   ],
   imports: [
     BrowserModule,
     CardModule,
+    ZXingScannerModule,
     InputTextModule,
     InputNumberModule,
     FormsModule,
