@@ -7,10 +7,6 @@
   justify-content: center;
   align-items: center;" >
   <form (ngSubmit)="onSubmit()" [formGroup]="report">
-
-
-
-
       <div style="padding-top: 15%; display: flex; align-items: center;">
       <span class="p-float-label">
         <input pInputText pKeyFilter="int" formControlName="withoutgrouping" />
@@ -74,6 +70,20 @@ align-items: center;">
   </div>
 </div>
 
+
+
+
+<div class="card flex justify-content-center">
+  <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
+  <p-dialog header="Tomar Foto" [(visible)]="visibleQr" [modal]="true" [style]="{ width: '400' , height: 400 }"
+    [draggable]="false" [resizable]="false">
+
+    <div style="height: 100; width: 100;">
+      <zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+  </div>
+
+  </p-dialog>
+</div>
 
 
 

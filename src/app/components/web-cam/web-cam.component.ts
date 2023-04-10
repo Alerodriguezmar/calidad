@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BrowserMultiFormatReader } from '@zxing/library';
 import { WebcamImage, WebcamInitError } from 'ngx-webcam';
 import { MenuItem } from 'primeng/api';
 import { Observable, Subject } from 'rxjs';
+import { FabricSupplierService } from 'src/app/services/fabric-supplier.service';
 import { WebCamService } from 'src/app/services/web-cam.service';
 
 @Component({
@@ -19,18 +21,22 @@ export class WebCamComponent {
   public messages: any[] = [];
   public getScreenWidth: any;
   visible: boolean = false;
+  visibleQr: boolean = false;
   public imagenesUr: any[] = [];
   responsiveOptions!: any[];
   items!: MenuItem[];
   report!:FormGroup;
+  qrResultString: string = "";
   
 
   //Inicializar data
 
+   
+
  
 
 
-  constructor(private webCamService: WebCamService, private fb: FormBuilder) { }
+  constructor(private webCamService: WebCamService, private fb: FormBuilder,private fabricSupplierService:FabricSupplierService) { }
 
 
 
@@ -43,6 +49,8 @@ export class WebCamComponent {
 
   public ngOnInit(): void {
 
+
+
     this.report = this.initForm();
 
     this.items = [
@@ -54,6 +62,13 @@ export class WebCamComponent {
              // this.messageService.add({ severity: 'error', summary: 'Delete', detail: 'Data Deleted' });
           }
       },
+      {
+        icon: 'pi pi-qrcode',
+        command: () => {
+          this.showDialogQr()
+           // this.messageService.add({ severity: 'error', summary: 'Delete', detail: 'Data Deleted' });
+        }
+    }
       // {
       //     icon: 'pi pi-upload',
       //     routerLink: ['/fileupload']
@@ -142,10 +157,33 @@ export class WebCamComponent {
     this.visible = true;
   }
 
+
+  showDialogQr() {
+    this.visibleQr = true;
+  }
+
+
   deleteImg(img: any): void {
     this.imagenesUr.splice(this.imagenesUr.indexOf(img), 1);
   }
+
+
+
+  clearResult(): void {
+    this.qrResultString = "";
+  }
+
+  onCodeResult(resultString: string) {
+    if(resultString != this.qrResultString){
+      this.fabricSupplierService.getFrase(resultString).subscribe(data => console.log(data))
+      this.qrResultString = resultString;
+      this.visibleQr = false;
+    }
 }
 
+onHideDialog() {
+  console.log("Cerrar")
+}
 
+}
 

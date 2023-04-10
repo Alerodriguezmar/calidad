@@ -22,6 +22,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { ScanQrComponent } from './components/scan-qr/scan-qr/scan-qr.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,8 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
   ],
   imports: [
     BrowserModule,
+    DynamicDialogModule,
+    ZXingScannerModule,
     CardModule,
     ZXingScannerModule,
     InputTextModule,
