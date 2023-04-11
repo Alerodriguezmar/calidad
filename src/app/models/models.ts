@@ -3,3 +3,23 @@ export class FabricSupplier {
     reference!: string;
     supplier!: string;
   }
+
+  export class TypeDefect {
+    id!: string;
+    description!: string;
+  }
+
+
+  export class FabricReport {
+    id!: string;
+    creationDate: any;
+    fabricSupplier!: FabricSupplier;
+    quantityAffected!: number;
+    typeDefect!: TypeDefect;
+    batchNum!: string;
+    imagesUrl!: string[];
+    comment!: string;
+  }
+
+
+

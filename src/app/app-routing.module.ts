@@ -9,6 +9,10 @@ const routes: Routes = [
     component: WebCamComponent
   },
   {
+    path: '',
+    component: WebCamComponent
+  },
+  {
     path: 'scan-qr',
     component: ScanQrComponent
   },

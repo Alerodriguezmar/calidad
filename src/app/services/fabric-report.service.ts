@@ -1,27 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FabricReport } from '../models/models';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class WebCamService {
+export class FabricReportService {
 
-  url = 'http://localhost:8080/ftp/upload';
+  url = 'http://localhost:8080/fabricReport';
 
   constructor(private http: HttpClient) { }
 
 
-  // sendPicture(imgUrl: string): Observable<any> {
-  //   const formData = new FormData();
-  //   // Agrega la imagen al FormData
+  public create(fabricReport:FabricReport): Observable<FabricReport> {
+    return this.http.post<FabricReport>(`${this.url}`,fabricReport);
+  }
 
-  //   const blob = this.dataURLtoBlob(imgUrl)
-  //   const blob2 = this.dataURLtoBlob(imgUrl)
-  //   formData.append('file', blob,'image.jpg');
-  //   formData.append('file', blob2,'image2.jpg');
-  //   return this.http.post(this.url, formData);
-  // }
+
 
 
   sendPicture(imgUrl: string[]): Observable<any> {
@@ -50,5 +46,34 @@ export class WebCamService {
     }
     return new Blob([u8arr], {type:mime});
 }
+
+
+public createFiLE(fabricReport:FabricReport,imgUrl: string[]) {
+  const formData = new FormData();
+
+  const json = JSON.stringify(fabricReport);
+const blob = new Blob([json], {
+  type: 'application/json'
+});
+
+  const blobsArray: (string | Blob)[] = [];
+    
+  for (let i = 0; i < imgUrl.length; i++) {
+    blobsArray[i] = this.dataURLtoBlob(imgUrl[i])
+  }
+
+  for (let i = 0; i < blobsArray.length; i++) {
+    formData.append('file', blobsArray[i],`image${i}.jpg`);
+  }
+
+  formData.append('report', blob);
+
+
+
+
+ return this.http.post<FabricReport>(`${this.url}/addFile`,formData);
+}
+
+
 
 }

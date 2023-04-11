@@ -23,6 +23,11 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ScanQrComponent } from './components/scan-qr/scan-qr/scan-qr.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { ToastModule } from 'primeng/toast';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { MenuModule } from 'primeng/menu';
+
 
 @NgModule({
   declarations: [
@@ -33,6 +38,10 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
   ],
   imports: [
     BrowserModule,
+    ToastModule,
+    MenuModule,
+    SplitButtonModule,
+    DropdownModule,
     DynamicDialogModule,
     ZXingScannerModule,
     CardModule,

@@ -1,71 +1,99 @@
-<div style="text-align:center">
+<div style="text-align:center; padding: 1%; ">
   <div class="form-header">
     <h1>Generar Reporte</h1>
   </div>
 
+
   <div style="display: flex;
   justify-content: center;
-  align-items: center;" >
-  <form (ngSubmit)="onSubmit()" [formGroup]="report">
-      <div style="padding-top: 15%; display: flex; align-items: center;">
-      <span class="p-float-label">
-        <input pInputText pKeyFilter="int" formControlName="withoutgrouping" />
-        <label htmlFor="username">Orden</label>
+  align-items: center;">
+    <div>
+      <span>
+        <input id="disabled-input" [style]="{'width': '100%'}" type="text" pInputText placeholder="Referencia"
+          readonly />
       </span>
     </div>
-    <div style="padding-top: 15%;"> 
-      <span class="p-float-label">
-        <input pInputText pKeyFilter="int" />
-        <label htmlFor="linea">Linea</label>
-      </span>
-    </div>
-    <div style="padding-top: 15%;"> 
-      <span class="p-float-label">
-        <input pInputText pKeyFilter="int" />
-        <label htmlFor="persiana">persiana</label>
-      </span>
-    </div>
-    <div style="padding-top: 15%;"> 
-      <span class="p-float-label">
-        <input pInputText pKeyFilter="int" />
-        <label htmlFor="Tela">Tela</label>
-      </span>
-    </div>
+  </div>
 
-<div style="padding-top: 15%;">
-  <p-button icon="pi pi-check" styleClass="p-button-rounded p-button-outlined" class="sumbit" type="submit"  [disabled]="report.invalid"></p-button>
 
-</div>
-  </form>
-</div>
+  <div style="display: flex;
+  justify-content: center;
+  align-items: center;">
 
-<h2>
-  Agregar Fotos
-</h2>
 
-<div style="display: flex;
-justify-content: center;
-align-items: center;">
-  <p-speedDial [model]="items" direction="up"></p-speedDial>
-</div>
+    <form (ngSubmit)="onSubmit()" [formGroup]="report">
+
+
+      <div style="padding-top: 15%;">
+        <span class="p-float-label">
+          <p-dropdown [style]="{'width': '95%'}" formControlName="typeDefect" [options]="typeDefect"
+            optionLabel="description"></p-dropdown>
+          <label htmlFor="username">Tipo de defecto</label>
+        </span>
+      </div>
+
+
+      <div style="padding-top: 15%;">
+        <span class="p-float-label">
+          <p-inputNumber formControlName="quantityAffected" mode="decimal" [minFractionDigits]="0"
+            [maxFractionDigits]="2"></p-inputNumber>
+          <label htmlFor="linea">Metros lineales afectados</label>
+        </span>
+      </div>
+
+      <div style="padding-top: 15%;">
+        <span class="p-float-label">
+          <input id="disabled-input" type="text" formControlName="comment" pInputText [disabled]="false" />
+          <label htmlFor="persiana">Comentarios</label>
+        </span>
+      </div>
+
+
+
+      <div style="width:50%; display: inline-block; padding-top: 5%;">
+        <p-button label="Enviar" styleClass="p-button-outlined p-button-success" pTooltip="Enviar" icon="pi pi-check"
+          class="sumbit" type="submit" [style]="{'width': '90%'}" [disabled]="report.invalid"></p-button>
+      </div>
+
+
+      <div style=" width:50%; display: inline-block; padding-top: 5%; ">
+
+
+  
+          <p-menu #menu [model]="items" [popup]="true"></p-menu>
+          <button [style]="{'width': '90%'}" pButton type="button" styleClass="p-button-outlined p-button-help" (click)="menu.toggle($event)" icon="pi pi-bars"
+            label="Fotos" ></button>
+      </div>
+
+
+      <div style="padding-top: 5%;">
+        <p-button label="VER FOTOS" [style]="{'width': '95%'}" pTooltip="Ver fotos"
+         styleClass="p-button-outlined p-button-help" icon="pi pi-camera"
+          (click)="showDialogPictures()"></p-button>
+      </div>
+    </form>
+  </div>
+
+
 
 
 
 
 
   <div class="card flex justify-content-center">
-    <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
-    <p-dialog header="Tomar Foto" [(visible)]="visible" [modal]="true" [style]="{ width: '400' , height: 400 }"
+    <p-dialog header="Camara" [(visible)]="visible" [modal]="true" [style]="{ width: '400' , height: 400 }"
       [draggable]="false" [resizable]="false">
       <webcam [height]="340" [width]="340" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
         *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
         [videoOptions]="videoOptions" [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)"
         (initError)="handleInitError($event)"></webcam>
       <br>
-      <p-button icon="pi pi-camera" styleClass="p-button-rounded p-button-outlined" (click)="triggerSnapshot();" style="position: relative;" ></p-button>
-      <!-- <button class="actionBtn" (click)="toggleWebcam();">Toggle Webcam</button> -->
-      <br>
-      <!-- <button class="actionBtn" (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable">Next Webcam</button> -->
+      <div style="padding: 5%;">
+        <p-button icon="pi pi-camera" pTooltip="Tomar foto" styleClass="p-button-rounded p-button-outlined"
+          (click)="triggerSnapshot();"></p-button>
+        <br>
+      </div>
+
     </p-dialog>
   </div>
 </div>
@@ -74,31 +102,43 @@ align-items: center;">
 
 
 <div class="card flex justify-content-center">
-  <!-- <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button> -->
   <p-dialog header="Tomar Foto" [(visible)]="visibleQr" [modal]="true" [style]="{ width: '400' , height: 400 }"
     [draggable]="false" [resizable]="false">
 
     <div style="height: 100; width: 100;">
       <zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner>
-  </div>
+    </div>
 
   </p-dialog>
 </div>
 
 
+<div class="card flex justify-content-center">
+  <p-dialog header="Fotos" [(visible)]="visiblePictures" [modal]="true" [style]="{ width: '400' , height: 400 }"
+    [draggable]="false" [resizable]="false">
 
-<div>
-  <div *ngFor="let student of imagenesUr" style="  display: flex;
- flex-direction: column;
- justify-content: center;
- align-items: center;">
-    <p-image src={{student}} [preview]="true" alt="Image" width="250">
-      <ng-template pTemplate="indicator">
-        <i class="pi pi-check"></i>
-      </ng-template>
-    </p-image>
-    <div style=" margin-top: 10px;">
-      <p-button (click)="deleteImg(student)" icon="pi pi-times"
-        styleClass="p-button-rounded p-button-danger"></p-button>
+
+
+
+    <div *ngFor="let student of imagenesUr" style="  display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;">
+      <p-image src={{student}} [preview]="true" alt="Image" width="250">
+        <ng-template pTemplate="indicator">
+          <i class="pi pi-check"></i>
+        </ng-template>
+      </p-image>
+      <div style=" margin-top: 10px; padding: 5%;">
+        <p-button (click)="deleteImg(student)" icon="pi pi-times" styleClass="p-button-rounded p-button-danger"
+          pTooltip="Eliminar foto"></p-button>
+      </div>
     </div>
-  </div>
+  </p-dialog>
+</div>
+
+
+
+<div class="card">
+  <p-toast [breakpoints]="{'920px': {width: '70%', right: '0', left: '0'}}"></p-toast>
+</div>
