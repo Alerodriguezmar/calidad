@@ -9,11 +9,30 @@
   align-items: center;">
     <div>
       <span>
-        <input id="disabled-input" [style]="{'width': '100%'}" type="text" pInputText placeholder="Referencia"
+        <input id="disabled-input" [style]="{'width': '100%'}" type="text" pInputText placeholder="Referencia" [(ngModel)]="fabricSupplier.reference"
           readonly />
       </span>
     </div>
+
+    
   </div>
+  
+  <div style="display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 4%;">
+    <div>
+      <span>
+        <input id="disabled-input" [style]="{'width': '100%'}" type="text" pInputText placeholder="Lote(BatchNum)" [(ngModel)]="batchNum"
+          readonly />
+      </span>
+    </div>
+
+    
+  </div>
+
+
+  
 
 
   <div style="display: flex;
@@ -51,26 +70,32 @@
 
 
       <div style="width:50%; display: inline-block; padding-top: 5%;">
-        <p-button label="Enviar" styleClass="p-button-outlined p-button-success" pTooltip="Enviar" icon="pi pi-check"
-          class="sumbit" type="submit" [style]="{'width': '90%'}" [disabled]="report.invalid"></p-button>
-      </div>
+        <!-- <p-button label="Enviar" styleClass="p-button-outlined p-button-success" pTooltip="Enviar" icon="pi pi-check"
+          class="sumbit" type="submit" [style]="{'width': '90%'}" [disabled]="report.invalid"></p-button> -->
+          <p-button label="VER" [style]="{'width': '90%'}" pTooltip="Ver fotos"
+          styleClass="p-button-outlined" icon="pi pi-camera"
+           (click)="showDialogPictures()"></p-button>
+        </div>
 
 
-      <div style=" width:50%; display: inline-block; padding-top: 5%; ">
 
+      
+      
+          <div style=" width:50%; display: inline-block; padding-top: 5%; ">
 
-  
           <p-menu #menu [model]="items" [popup]="true"></p-menu>
           <button [style]="{'width': '90%'}" pButton type="button" styleClass="p-button-outlined p-button-help" (click)="menu.toggle($event)" icon="pi pi-bars"
             label="Fotos" ></button>
       </div>
 
-
       <div style="padding-top: 5%;">
-        <p-button label="VER FOTOS" [style]="{'width': '95%'}" pTooltip="Ver fotos"
+        <p-button label="Enviar" styleClass="p-button-outlined p-button-success" pTooltip="Enviar" icon="pi pi-check"
+          class="sumbit" type="submit" [style]="{'width': '95%'}" [disabled]="report.invalid"></p-button>
+        <!-- <p-button label="VER FOTOS" [style]="{'width': '95%'}" pTooltip="Ver fotos"
          styleClass="p-button-outlined p-button-help" icon="pi pi-camera"
-          (click)="showDialogPictures()"></p-button>
+          (click)="showDialogPictures()"></p-button> -->
       </div>
+      
     </form>
   </div>
 

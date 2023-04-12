@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class TypeDefectService {
 
   
-  url = 'http://192.168.115.151:8080/typeDefect';
+  url = 'http://192.168.1.8:8080/typeDefect';
 
   constructor(private http: HttpClient) { }
 

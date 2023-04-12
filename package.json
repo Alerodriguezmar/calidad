@@ -22,6 +22,7 @@
     "@zxing/library": "^0.19.2",
     "@zxing/ngx-scanner": "^3.8.1",
     "ngx-scanner": "^0.0.0",
+    "ngx-spinner": "^15.0.1",
     "ngx-webcam": "^0.4.1",
     "primeicons": "^6.0.1",
     "primeng": "^15.2.1",

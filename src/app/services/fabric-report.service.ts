@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class FabricReportService {
 
-  url = 'http://localhost:8080/fabricReport';
+  url = 'http://192.168.1.8:8080/fabricReport';
 
   constructor(private http: HttpClient) { }
 

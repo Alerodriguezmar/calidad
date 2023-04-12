@@ -1,7 +1,7 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { WebcamModule } from 'ngx-webcam';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,7 +27,14 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { MenuModule } from 'primeng/menu';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { interceptor } from './interceptor/interceptor';
 
+
+
+interface NgxSpinnerConfig {
+  type?: string;
+}
 
 @NgModule({
   declarations: [
@@ -39,10 +46,12 @@ import { MenuModule } from 'primeng/menu';
   imports: [
     BrowserModule,
     ToastModule,
+    NgxSpinnerModule,
     MenuModule,
     SplitButtonModule,
     DropdownModule,
     DynamicDialogModule,
+    BrowserAnimationsModule,
     ZXingScannerModule,
     CardModule,
     ZXingScannerModule,
@@ -56,7 +65,6 @@ import { MenuModule } from 'primeng/menu';
     ButtonModule,
     MenubarModule,
     ImageModule,
-    BrowserAnimationsModule,
     SlideMenuModule,
     GalleriaModule,
     DialogModule,
@@ -70,7 +78,14 @@ import { MenuModule } from 'primeng/menu';
       registrationStrategy: 'registerWhenStable:30000'
     })
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: interceptor,
+      multi: true,
+    },
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
