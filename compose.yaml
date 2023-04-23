@@ -1,0 +1,45 @@
+services:
+   inventaryentryandexitservice:
+      image: "inventaryentryandexitservice"
+      ports:
+         - "22100:22100"
+      container_name: inventaryentryandexitservice
+      hostname: inventaryentryandexitservice
+      stdin_open: true
+      tty: true
+      networks:
+         - safra-docker-network
+
+   stocktransferservice:
+      image: "stocktransferservice"
+      ports:
+         - "22101:22101"
+      container_name: stocktransferservice
+      hostname: stocktransferservice
+      stdin_open: true
+      tty: true
+      networks:
+         - safra-docker-network
+   defectrecord:
+      image: "defectrecord"
+      ports:
+         - "22110:22110"
+      container_name: defectrecord
+      hostname: defectrecord
+      stdin_open: true
+      tty: true
+      networks:
+         - safra-docker-network
+   defectrecord-front:
+      image: "defectrecord-front"
+      ports:
+         - "22111:80"
+      container_name: defectrecord-front
+      hostname: defectrecord-front
+      stdin_open: true
+      tty: true
+      networks:
+         - safra-docker-network
+networks:
+   safra-docker-network: {}
+
