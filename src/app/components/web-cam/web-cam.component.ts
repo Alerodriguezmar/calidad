@@ -106,7 +106,7 @@ export class WebCamComponent {
     console.log(this.fabricReport)
     //this.fabricReportService.create(this.fabricReport).subscribe(data => { console.log(data)})
     //this.webCamService.sendPicture(this.imagenesUr).subscribe()
-    this.fabricReportService.createFiLE(this.fabricReport, this.imagenesUr).subscribe( data => {
+    this.fabricReportService.createFiLE(this.fabricReport, this.imagenesUr,this.qrResultString).subscribe( data => {
       window.location.reload()
     }) 
     this.ShowSendForm();

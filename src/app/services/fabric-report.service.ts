@@ -48,7 +48,7 @@ export class FabricReportService {
 }
 
 
-public createFiLE(fabricReport:FabricReport,imgUrl: string[]) {
+public createFiLE(fabricReport:FabricReport,imgUrl: string[],idFabric:string) {
   const formData = new FormData();
 
   const json = JSON.stringify(fabricReport);
@@ -63,7 +63,7 @@ const blob = new Blob([json], {
   }
 
   for (let i = 0; i < blobsArray.length; i++) {
-    formData.append('file', blobsArray[i],`image${i}.jpg`);
+    formData.append('file', blobsArray[i],`idFabric${i}.jpg`);
   }
 
   formData.append('report', blob);
