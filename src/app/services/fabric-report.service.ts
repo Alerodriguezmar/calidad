@@ -63,7 +63,7 @@ const blob = new Blob([json], {
   }
 
   for (let i = 0; i < blobsArray.length; i++) {
-    formData.append('file', blobsArray[i],`idFabric${i}.jpg`);
+    formData.append('file', blobsArray[i],`${idFabric}${i}.jpg`);
   }
 
   formData.append('report', blob);
