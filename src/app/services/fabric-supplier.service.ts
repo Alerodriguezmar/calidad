@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class FabricSupplierService {
 
-  url = 'http://192.168.1.8:8080/fabricSupplier/';
+  url = 'http://192.168.100.180:22110/fabricSupplier/';
 
   constructor(private http: HttpClient) { }
 
