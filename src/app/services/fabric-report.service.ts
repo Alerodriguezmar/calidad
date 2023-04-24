@@ -56,6 +56,9 @@ const blob = new Blob([json], {
   type: 'application/json'
 });
 
+
+  console.log(idFabric)
+
   const blobsArray: (string | Blob)[] = [];
     
   for (let i = 0; i < imgUrl.length; i++) {
