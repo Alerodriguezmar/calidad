@@ -36,6 +36,7 @@ export class WebCamComponent {
   fabricSupplier: FabricSupplier = new FabricSupplier();
   typeDefect!: TypeDefect[];
   fabricReport!: FabricReport
+  qrData: string = "";
 
   constructor(
     private webCamService: WebCamService,
@@ -104,9 +105,10 @@ export class WebCamComponent {
     this.fabricReport!.fabricSupplier = this.fabricSupplier
     this.fabricReport.batchNum = this.batchNum
     console.log(this.fabricReport)
+
     //this.fabricReportService.create(this.fabricReport).subscribe(data => { console.log(data)})
     //this.webCamService.sendPicture(this.imagenesUr).subscribe()
-    this.fabricReportService.createFiLE(this.fabricReport, this.imagenesUr,this.qrResultString).subscribe( data => {
+    this.fabricReportService.createFiLE(this.fabricReport, this.imagenesUr,this.qrData).subscribe( data => {
       window.location.reload()
     }) 
     this.ShowSendForm();
@@ -206,6 +208,7 @@ export class WebCamComponent {
       this.fabricSupplierService.getFrase(array[0]).subscribe(data => {
         this.fabricSupplier = data
         this.batchNum = array[1]
+        this.qrData = resultString
       })
       this.qrResultString = resultString;
       this.ShowScanQR();
