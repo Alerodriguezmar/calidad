@@ -18,7 +18,7 @@ import { WebCamService } from 'src/app/services/web-cam.service';
   providers: [MessageService]
 })
 export class WebCamComponent {
-  public showWebcam = true;
+  public showWebcam = false;
   public allowCameraSwitch = true;
   public multipleWebcamsAvailable = false;
   public deviceId!: string;
@@ -65,7 +65,8 @@ export class WebCamComponent {
 
     this.findAllTypeDefect();
 
-    console.log(this.itemCode)
+    console.log(this.itemCode)    
+    this.showNextWebcam(this.deviceId)
 
     this.report = this.initForm();
 
@@ -179,6 +180,7 @@ export class WebCamComponent {
 
   showDialog() {
     this.visible = true;
+    this.toggleWebcam()
   }
 
 
@@ -187,7 +189,9 @@ export class WebCamComponent {
   }
 
   showDialogPictures() {
+
     this.visiblePictures = true;
+   
   }
 
   showDialogReference() {

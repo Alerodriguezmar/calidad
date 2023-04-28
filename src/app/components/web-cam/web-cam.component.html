@@ -14,7 +14,7 @@
       </span>
     </div>
 
-    
+  
   </div>
   
   <div style="display: flex;
@@ -117,11 +117,26 @@
         [videoOptions]="videoOptions" [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)"
         (initError)="handleInitError($event)"></webcam>
       <br>
+      
+
+      <!-- <button class="actionBtn" (click)="toggleWebcam();">Toggle Webcam</button> -->
+      <!-- <br/>
+      <button class="actionBtn" (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable">Next Webcam</button>
+      <input id="cameraSwitchCheckbox" type="checkbox" [(ngModel)]="allowCameraSwitch"><label for="cameraSwitchCheckbox">Allow Camera Switch</label>
+      <br/>
+      DeviceId: <input id="deviceId" type="text" [(ngModel)]="deviceId" style="width: 500px">
+      <button (click)="showNextWebcam(deviceId);">Activate</button> -->
+
       <div style="padding: 5%;">
         <p-button icon="pi pi-camera" pTooltip="Tomar foto" styleClass="p-button-rounded p-button-outlined"
           (click)="triggerSnapshot();"></p-button>
+          <p-button icon="pi pi-refresh" pTooltip="Activar" style="margin: 1%;" styleClass="p-button-rounded p-button-warning p-button-outlined"
+          (click)="toggleWebcam()"></p-button>
         <br>
       </div>
+    
+ 
+  
 
     </p-dialog>
   </div>
