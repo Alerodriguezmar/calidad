@@ -82,9 +82,13 @@
       
       
           <div style=" width:50%; display: inline-block; padding-top: 5%; ">
-
+<!-- 
           <p-menu #menu [model]="items" [popup]="true"></p-menu>
           <button [style]="{'width': '90%'}" pButton type="button" styleClass="p-button-outlined p-button-help" (click)="menu.toggle($event)" icon="pi pi-bars"
+            label="Fotos" ></button> -->
+            
+          
+          <button [style]="{'width': '90%'}" pButton type="button" styleClass="p-button-outlined p-button-help" (click)="showDialog()" icon="pi pi-bars"
             label="Fotos" ></button>
       </div>
 
@@ -163,7 +167,32 @@
 </div>
 
 
+<div class="card flex justify-content-center">
+  <p-dialog header="Agregar Referencia" [(visible)]="visibleReference" [modal]="true" [style]="{ width: '400px' , height: '370px' }"
+   [resizable]="false" [maximizable]="true">
+
+    <span class="p-float-label" style="margin: 30px;">
+      <input pInputText id="batchNum" [(ngModel)]="batchNum" (ngModelChange)="onInputChangeBatchNum()" />
+      <label htmlFor="batchNum">Lote</label>
+  </span>
+
+    
+  <span class="p-float-label" style="margin: 30px;">
+    <p-dropdown [options]="itemCodes" [(ngModel)]="itemCode" appendTo="body"></p-dropdown>
+  <label for="float-label">ItemCode</label>
+</span>
+
+    <ng-template pTemplate="footer">
+      <p-button icon="pi pi-check" (click)="addReference()" label="Agregar" styleClass="p-button-text"></p-button>
+  </ng-template>
+  </p-dialog>
+</div>
+
+
+
 
 <div class="card">
   <p-toast [breakpoints]="{'920px': {width: '70%', right: '0', left: '0'}}"></p-toast>
 </div>
+
+<p-button label="Agregar Referencia"   (click)="showDialogReference()" class="btn-flotante"> </p-button>

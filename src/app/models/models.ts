@@ -21,5 +21,15 @@ export class FabricSupplier {
     comment!: string;
   }
 
+  export class OIBT {
+    itemCode!: string;
+    batchNum!: string;
+    identifier!: string;
+    itemName!: string;
+
+  }
+
+
+
 
 

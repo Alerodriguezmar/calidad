@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BrowserMultiFormatReader } from '@zxing/library';
+
 import { WebcamImage, WebcamInitError } from 'ngx-webcam';
 import { MenuItem, MessageService } from 'primeng/api';
 import { Observable, Subject } from 'rxjs';
 import { FabricReport, FabricSupplier, TypeDefect } from 'src/app/models/models';
 import { FabricReportService } from 'src/app/services/fabric-report.service';
 import { FabricSupplierService } from 'src/app/services/fabric-supplier.service';
+import { OibtService } from 'src/app/services/oibt.service';
 import { TypeDefectService } from 'src/app/services/type-defect.service';
 import { WebCamService } from 'src/app/services/web-cam.service';
 
@@ -37,6 +38,9 @@ export class WebCamComponent {
   typeDefect!: TypeDefect[];
   fabricReport!: FabricReport
   qrData: string = "";
+  visibleReference: boolean = false;
+  itemCodes:string[] = []
+  itemCode:string = "";
 
   constructor(
     private webCamService: WebCamService,
@@ -44,7 +48,8 @@ export class WebCamComponent {
     private fabricSupplierService: FabricSupplierService,
     private typeDefectService: TypeDefectService,
     private fabricReportService: FabricReportService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private oibtService: OibtService
   ) { }
 
 
@@ -60,7 +65,7 @@ export class WebCamComponent {
 
     this.findAllTypeDefect();
 
-
+    console.log(this.itemCode)
 
     this.report = this.initForm();
 
@@ -76,16 +81,16 @@ export class WebCamComponent {
           this.showDialog()
         }
       },
-      {
-        tooltipOptions: {
-          tooltipLabel: 'Agragar referencia'
-        },
-        label: 'Scan QR',
-        icon: 'pi pi-qrcode',
-        command: () => {
-          this.showDialogQr()
-        }
-      }
+      // {
+      //   tooltipOptions: {
+      //     tooltipLabel: 'Agragar referencia'
+      //   },
+      //   label: 'Scan QR',
+      //   icon: 'pi pi-qrcode',
+      //   command: () => {
+      //     this.showDialogQr()
+      //   }
+      // }
     ];
     this.getScreenWidth = window.innerWidth;
   }
@@ -185,6 +190,11 @@ export class WebCamComponent {
     this.visiblePictures = true;
   }
 
+  showDialogReference() {
+    this.visibleReference = true;
+  }
+
+
 
 
   deleteImg(img: any): void {
@@ -244,13 +254,29 @@ export class WebCamComponent {
   }
 
   ShowScanQR() {
-    this.messageService.add({ severity: 'success', summary: 'QR', detail: 'Escaneo Exitoso' });
+    this.messageService.add({ severity: 'success', summary: 'Referencia', detail: 'Referencia Agregada' });
   }
 
   ShowSendForm() {
     this.messageService.add({ severity: 'success', summary: 'Enviado', detail: 'Formulario enviado' });
   }
 
+  onInputChangeBatchNum() {
+    this.oibtService.getItemCode(this.batchNum).subscribe(data => {
+
+      this.itemCodes = data
+      console.log(this.itemCodes)
+
+    })
+  }
+
+
+  addReference(){
+    this.visibleReference = false
+
+    const code = this.itemCode+"."+this.batchNum
+    this.onCodeResult(code)
+  }
 
 }
 
