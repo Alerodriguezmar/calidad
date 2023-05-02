@@ -18,4 +18,10 @@ export class OibtService {
       const params = new HttpParams().set('batchNum', batchNum);
       return this.http.get<string[]>(`${this.url}/itemCode`,{ params }).pipe(delay(1000));
   }
+
+  public getOibt(batchNum:string): Observable<OIBT[]> {
+    const params = new HttpParams().set('batchNum', batchNum);
+    return this.http.get<OIBT[]>(`${this.url}`,{ params }).pipe(delay(1000));
+}
+
 }

@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WebcamImage, WebcamInitError } from 'ngx-webcam';
 import { MenuItem, MessageService } from 'primeng/api';
 import { Observable, Subject } from 'rxjs';
-import { FabricReport, FabricSupplier, TypeDefect } from 'src/app/models/models';
+import { FabricReport, FabricSupplier, OIBT, TypeDefect } from 'src/app/models/models';
 import { FabricReportService } from 'src/app/services/fabric-report.service';
 import { FabricSupplierService } from 'src/app/services/fabric-supplier.service';
 import { OibtService } from 'src/app/services/oibt.service';
@@ -39,6 +39,8 @@ export class WebCamComponent {
   fabricReport!: FabricReport
   qrData: string = "";
   visibleReference: boolean = false;
+  oibts:OIBT[] = []
+  oibt: OIBT = new OIBT;
   itemCodes:string[] = []
   itemCode:string = "";
 
@@ -266,10 +268,10 @@ export class WebCamComponent {
   }
 
   onInputChangeBatchNum() {
-    this.oibtService.getItemCode(this.batchNum).subscribe(data => {
+    this.oibtService.getOibt(this.batchNum).subscribe(data => {
 
-      this.itemCodes = data
-      console.log(this.itemCodes)
+      this.oibts = data
+      console.log(this.oibts)
 
     })
   }
@@ -277,8 +279,8 @@ export class WebCamComponent {
 
   addReference(){
     this.visibleReference = false
-
-    const code = this.itemCode+"."+this.batchNum
+    const code = this.oibt.itemCode+"."+this.batchNum
+    console.log(code)
     this.onCodeResult(code)
   }
 

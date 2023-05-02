@@ -193,10 +193,12 @@
 
     
   <span class="p-float-label" style="margin: 30px;">
-    <p-dropdown [options]="itemCodes" [(ngModel)]="itemCode" appendTo="body"></p-dropdown>
-  <label for="float-label">ItemCode</label>
+    <p-dropdown [options]="oibts" [(ngModel)]="oibt"  optionLabel="itemName" appendTo="body"></p-dropdown>
+  <label for="float-label">Nombre</label>
 </span>
 
+<input id="disabled-input" style="margin-left: 30px;" type="text" pInputText placeholder="Referencia" [(ngModel)]="oibt.itemCode"
+readonly />
     <ng-template pTemplate="footer">
       <p-button icon="pi pi-check" (click)="addReference()" label="Agregar" styleClass="p-button-text"></p-button>
   </ng-template>
