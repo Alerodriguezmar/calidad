@@ -7,8 +7,6 @@ services:
       hostname: inventaryentryandexitservice
       stdin_open: true
       tty: true
-      networks:
-         - safra-docker-network
 
    stocktransferservice:
       image: "stocktransferservice"
@@ -18,8 +16,6 @@ services:
       hostname: stocktransferservice
       stdin_open: true
       tty: true
-      networks:
-         - safra-docker-network
    defectrecord:
       image: "defectrecord"
       ports:
@@ -28,8 +24,6 @@ services:
       hostname: defectrecord
       stdin_open: true
       tty: true
-      networks:
-         - safra-docker-network
    defectrecord-front:
       image: "defectrecord-front"
       ports:
@@ -38,8 +32,6 @@ services:
       hostname: defectrecord-front
       stdin_open: true
       tty: true
-      networks:
-         - safra-docker-network
 networks:
    safra-docker-network: {}
 
