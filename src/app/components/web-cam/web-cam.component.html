@@ -45,7 +45,7 @@
 
       <div style="padding-top: 15%;">
         <span class="p-float-label">
-          <p-dropdown [style]="{'width': '95%'}" formControlName="typeDefect" [options]="typeDefect"
+          <p-dropdown [style]="{'width': '95%'}" formControlName="typeDefect"   [filter]="true" filterBy="description" [options]="typeDefect"
             optionLabel="description"></p-dropdown>
           <label htmlFor="username">Tipo de defecto</label>
         </span>
@@ -193,7 +193,7 @@
 
     
   <span class="p-float-label" style="margin: 30px;">
-    <p-dropdown [options]="oibts" [(ngModel)]="oibt"  optionLabel="itemName" appendTo="body"></p-dropdown>
+    <p-dropdown [options]="oibts" [(ngModel)]="oibt"  optionLabel="itemName"  [filter]="true" filterBy="itemName" appendTo="body"></p-dropdown>
   <label for="float-label">Nombre</label>
 </span>
 
