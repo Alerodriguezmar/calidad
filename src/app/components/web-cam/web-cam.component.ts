@@ -118,8 +118,13 @@ export class WebCamComponent {
     //this.webCamService.sendPicture(this.imagenesUr).subscribe()
     this.fabricReportService.createFiLE(this.fabricReport, this.imagenesUr,this.qrData).subscribe( data => {
       window.location.reload()
-    }) 
-    this.ShowSendForm();
+      this.ShowSendForm();
+    },
+    error => {
+      this.ShowSendError()
+
+    }  ) 
+ 
   }
 
 
@@ -265,6 +270,10 @@ export class WebCamComponent {
 
   ShowSendForm() {
     this.messageService.add({ severity: 'success', summary: 'Enviado', detail: 'Formulario enviado' });
+  }
+
+  ShowSendError() {
+    this.messageService.add({ severity: 'error', summary: 'No enviado', detail: 'Formulario enviado' });
   }
 
   onInputChangeBatchNum() {

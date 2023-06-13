@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class FabricReportService {
 
+  //url = 'http://localhost:22110/fabricReport';
   url = 'http://192.168.100.180:22110/fabricReport';
 
   constructor(private http: HttpClient) { }
@@ -66,7 +67,7 @@ const blob = new Blob([json], {
   }
 
   for (let i = 0; i < blobsArray.length; i++) {
-    formData.append('file', blobsArray[i],`${idFabric}${i}.jpg`);
+    formData.append('file', blobsArray[i],`${idFabric}-${i}.jpg`);
   }
 
   formData.append('report', blob);
