@@ -101,7 +101,7 @@ export class WebCamComponent {
   initForm(): FormGroup {
     return this.fb.group({
       typeDefect: ['', [Validators.required, Validators.minLength(5)]],
-      quantityAffected: ['0', [Validators.required, Validators.minLength(5)]],
+      quantityAffected: ['0', [Validators.required, Validators.minLength(5),Validators.max(20),Validators.min(0.01)]],
       comment: ['',],
       //surnames:['',[Validators.required,Validators.minLength(5)]],
       withoutgrouping: ['', []]
