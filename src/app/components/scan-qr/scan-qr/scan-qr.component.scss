@@ -3,3 +3,50 @@
     width: 100px;
     object-fit: contain;
 }
+
+
+// .steps-content {
+//   margin-top: 16px;
+//   border: 1px dashed #e9e9e9;
+//   border-radius: 6px;
+//   background-color: #fafafa;
+//   min-height: 180px;
+//   text-align: center;
+//   padding-top: 80px;
+//   position: absolute;
+//   width: 60%; /* Ajusta el ancho del elemento en pantallas más grandes */
+//   left: 50%; /* Centra horizontalmente */
+//   transform: translateX(-50%); /* Ajusta la posición para centrar exactamente */
+// }
+
+.steps-content {
+  padding: 20px 20px 20px;
+    margin-top: 16px;
+    border: 1px dashed #e9e9e9;
+    border-radius: 6px;
+    background-color: #fafafa;
+    min-height: 200px;
+    text-align: center;
+    padding-top: 80px;
+  
+}
+
+.inner-content {
+  /* El contenido dentro de inner-content ocupará el máximo espacio vertical posible */
+  grid-row: 1 / -1;
+}
+
+/* Media query para pantallas más pequeñas */
+
+/* Media query para pantallas más pequeñas */
+
+
+  .steps-action {
+    margin-top: 24px;
+  }
+
+  button {
+    margin-right: 8px;
+  }
+
+  

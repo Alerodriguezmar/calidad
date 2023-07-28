@@ -29,6 +29,19 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { MenuModule } from 'primeng/menu';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { interceptor } from './interceptor/interceptor';
+import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+import { NzStepsModule } from 'ng-zorro-antd/steps';
+import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+
+registerLocaleData(en);
 
 
 
@@ -45,11 +58,18 @@ interface NgxSpinnerConfig {
   ],
   imports: [
     BrowserModule,
+    NzStepsModule,
+    NzGridModule,
+    NzMessageModule,
+    NzButtonModule,
+    NgxScannerQrcodeModule,
     ToastModule,
     NgxSpinnerModule,
     MenuModule,
+    NzDescriptionsModule,
     SplitButtonModule,
     DropdownModule,
+    NzLayoutModule,
     DynamicDialogModule,
     BrowserAnimationsModule,
     ZXingScannerModule,
@@ -84,6 +104,7 @@ interface NgxSpinnerConfig {
       useClass: interceptor,
       multi: true,
     },
+    { provide: NZ_I18N, useValue: en_US },
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
