@@ -8,7 +8,7 @@ import { FabricReport } from 'src/app/models/models';
 })
 export class UserService {
 
-  url = 'http://192.168.116.101:22111';
+  url = 'http://192.168.116.15:22111';
 
   constructor(private http: HttpClient) { }
 
