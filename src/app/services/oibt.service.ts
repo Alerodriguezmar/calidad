@@ -8,7 +8,7 @@ import { Observable, delay } from 'rxjs';
 })
 export class OibtService {
 
-  url = 'http://192.168.100.180:22110/OIBT';
+  url = 'http://192.168.100.247:42111/OIBT';
 
   constructor(private http: HttpClient) { }
 

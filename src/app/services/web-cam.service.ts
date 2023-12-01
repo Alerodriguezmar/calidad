@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class WebCamService {
 
-  url = 'http://192.168.100.180:22110/ftp/upload';
+  url = 'http://192.168.100.247:42111/ftp/upload';
 
   constructor(private http: HttpClient) { }
 
