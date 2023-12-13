@@ -1,0 +1,106 @@
+<header>
+  <div class="form-header">
+    <h1>Generar Reporte</h1>
+  </div>
+</header>
+<section class="select-area">
+  <p-dropdown
+    [options]="options"
+    [(ngModel)]="selectedType"
+    [showClear]="true"
+    placeholder="Selección de Tipo"
+    (ngModelChange)="findAllTypeDefect()"
+  ></p-dropdown>
+</section>
+@if(selectedType){
+<section class="info-input">
+  <input
+    type="text"
+    pInputText
+    placeholder="Referencia"
+    [(ngModel)]="fabricSupplier.reference"
+    readonly
+  />
+  <input
+    type="text"
+    pInputText
+    [placeholder]="type"
+    [(ngModel)]="batchNum"
+    readonly
+  />
+</section>
+<section class="form-content">
+  <form (ngSubmit)="onSubmit()" [formGroup]="report">
+    <span class="p-float-label">
+      <p-dropdown
+        formControlName="typeDefect"
+        [filter]="true"
+        filterBy="description"
+        [options]="typeDefect"
+        optionLabel="description"
+      ></p-dropdown>
+      <label htmlFor="username">Tipo de defecto</label>
+    </span>
+    <span class="p-float-label">
+      <p-inputNumber
+        formControlName="quantityAffected"
+        mode="decimal"
+        [minFractionDigits]="0"
+        [maxFractionDigits]="2"
+        [ngModel]="undefined"
+      ></p-inputNumber>
+      <label htmlFor="linea">Metros lineales afectados</label>
+    </span>
+    <span class="p-float-label">
+      <input
+        id="disabled-input"
+        type="text"
+        formControlName="comment"
+        pInputText
+        [disabled]="false"
+      />
+      <label htmlFor="persiana">Comentarios</label>
+    </span>
+
+    <div class="evidences">
+      <p-button
+        class="show-photos"
+        label="VER"
+        pTooltip="Ver fotos"
+        tooltipPosition="top"
+        styleClass="p-button-outlined"
+        icon="pi pi-camera"
+        (click)="showPictures()"
+      ></p-button>
+
+      <button
+        pButton
+        type="button"
+        styleClass="p-button-outlined p-button-help"
+        (click)="showCamera()"
+        icon="pi pi-bars"
+        label="Fotos"
+      ></button>
+    </div>
+
+    <div style="margin-top: 20px">
+      <p-button
+        label="Enviar"
+        styleClass="p-button-outlined p-button-success"
+        pTooltip="Enviar"
+        icon="pi pi-check"
+        class="sumbit"
+        type="submit"
+        [disabled]="report.invalid"
+      ></p-button>
+    </div>
+  </form>
+</section>
+<p-button
+  label="Agregar Referencia"
+  (click)="showReference()"
+  class="btn-flotante button-float"
+>
+</p-button>
+}
+<p-toast position="top-left" key="tl"></p-toast>

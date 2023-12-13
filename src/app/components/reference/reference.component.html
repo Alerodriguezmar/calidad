@@ -1,0 +1,37 @@
+<section class="reference">
+  <span class="p-float-label">
+    <input
+      pInputText
+      id="batchNum"
+      [(ngModel)]="batchNum"
+      (ngModelChange)="onInputChangeBatchNum()"
+    />
+    <label htmlFor="batchNum">{{type}}</label>
+  </span>
+
+  <span class="p-float-label">
+    <p-dropdown
+      [options]="oibts"
+      [(ngModel)]="oibt"
+      optionLabel="itemName"
+      [filter]="true"
+      filterBy="itemName"
+      appendTo="body"
+    ></p-dropdown>
+    <label for="float-label">Nombre</label>
+  </span>
+
+  <input
+    id="disabled-input"
+    type="text"
+    pInputText
+    placeholder="Referencia"
+    [ngModel]="oibt ? oibt.itemCode : null"
+    readonly
+  />
+  <p-button
+    icon="pi pi-check"
+    (click)="addReference()"
+    label="Agregar"
+  ></p-button>
+</section>

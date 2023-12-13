@@ -1,0 +1,23 @@
+.reference {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  padding-block: 20px;
+}
+
+::ng-deep .p-dropdown {
+  width: 100%;
+}
+
+input {
+  width: 100%;
+}
+
+p-button {
+  color: white;
+  text-align: center;
+
+  ::ng-deep button {
+    width: 50%;
+  }
+}

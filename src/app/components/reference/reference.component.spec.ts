@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ScanQrComponent } from './scan-qr.component';
+import { ReferenceComponent } from './reference.component';
 
-describe('ScanQrComponent', () => {
-  let component: ScanQrComponent;
-  let fixture: ComponentFixture<ScanQrComponent>;
+describe('ReferenceComponent', () => {
+  let component: ReferenceComponent;
+  let fixture: ComponentFixture<ReferenceComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ScanQrComponent ]
+      imports: [ReferenceComponent]
     })
     .compileComponents();
-
-    fixture = TestBed.createComponent(ScanQrComponent);
+    
+    fixture = TestBed.createComponent(ReferenceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

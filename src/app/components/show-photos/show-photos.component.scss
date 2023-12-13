@@ -1,0 +1,17 @@
+.photos {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+::ng-deep .grid-nogutter {
+    flex-direction: column;
+    row-gap: 10px;
+    align-items: center;
+}
+
+p-button {
+    ::ng-deep button {
+        height: 20px;
+    }
+}

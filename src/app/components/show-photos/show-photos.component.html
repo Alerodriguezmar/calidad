@@ -1,0 +1,24 @@
+<section class="photos">
+  <p-galleria
+    [value]="imagenesUr"
+    [responsiveOptions]="responsiveOptions"
+    [containerStyle]="{ 'max-width': '640px' }"
+    [numVisible]="5"
+  >
+    <ng-template pTemplate="item" let-item>
+      <p-image [src]="item" alt="Image" width="100%" [preview]="true"></p-image>
+    </ng-template>
+    <ng-template pTemplate="thumbnail" let-item>
+      <div class="grid grid-nogutter justify-content-center">
+        <img [src]="item" height="50px" />
+        <p-button
+          (click)="deleteImg(item)"
+          icon="pi pi-times"
+          styleClass="p-button-danger"
+          pTooltip="Eliminar foto"
+        ></p-button>
+      </div>
+    </ng-template>
+  </p-galleria>
+</section>
+<p-toast position="top-left" key="tl"></p-toast>

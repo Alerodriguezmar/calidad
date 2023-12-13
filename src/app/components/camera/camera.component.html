@@ -1,0 +1,20 @@
+<section class="camera">
+  <webcam
+    [trigger]="triggerObservable()"
+    (imageCapture)="handleImage($event)"
+    *ngIf="showWebcam"
+    [allowCameraSwitch]="allowCameraSwitch"
+    [switchCamera]="nextWebcamObservable()"
+    [videoOptions]="videoOptions()"
+    [imageQuality]="1"
+    (cameraSwitched)="cameraWasSwitched($event)"
+    (initError)="handleInitError($event)"
+  ></webcam>
+  <p-button
+    icon="pi pi-camera"
+    pTooltip="Tomar foto"
+    styleClass="p-button-rounded p-button-outlined"
+    (click)="triggerSnapshot()"
+  ></p-button>
+</section>
+<p-toast position="top-left" key="bc"></p-toast>

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class WebCamService {
 
-  url = 'http://192.168.100.247:42111/ftp/upload';
+  url = 'http://192.168.100.180:22110/ftp/upload';
 
   constructor(private http: HttpClient) { }
 
@@ -28,7 +28,7 @@ export class WebCamService {
     const formData = new FormData();
     // Agrega la imagen al FormData
 
-    const blobsArray: (string | Blob)[] = [];
+    const blobsArray: Blob[] = [];
     
     for (let i = 0; i < imgUrl.length; i++) {
       blobsArray[i] = this.dataURLtoBlob(imgUrl[i])

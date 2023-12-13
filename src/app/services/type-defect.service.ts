@@ -9,12 +9,12 @@ import { Observable } from 'rxjs/internal/Observable';
 export class TypeDefectService {
 
   
-  url = 'http://192.168.100.247:42111/typeDefect';
+  url = 'http://192.168.100.180:22110/typeDefect';
 
   constructor(private http: HttpClient) { }
 
-  public getAlll(): Observable<TypeDefect[]> {
-    return this.http.get<TypeDefect[]>(`${this.url}`);
+  public getAlll(selectedType: string): Observable<TypeDefect[]> {
+    return this.http.get<TypeDefect[]>(`${this.url}?area=${selectedType}`);
   }
 
 }
