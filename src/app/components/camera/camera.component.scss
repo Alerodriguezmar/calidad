@@ -3,3 +3,8 @@
     flex-direction: column;
     align-items: center;
 }
+
+::ng-deep video {
+    width: 100%;
+    height: auto;
+}
